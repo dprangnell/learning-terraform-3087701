@@ -5,3 +5,7 @@ output "instance_amis" {
 output "instance_arns" {
   value = [for i in aws_instance.web : i.arn]
 }
+
+output "instance_public_dns" {
+  value = [for i in aws_instance.web : i.public_dns]
+}
