@@ -20,3 +20,17 @@ variable "tags" {
   type        = map(string)
   default     = {}
 }
+
+variable "sg_remote_state_bucket" {
+  type = string
+  default = "dpp-learning-terraform-state-bucket"
+}
+
+variable "sg_remote_state_key" {
+  type = string
+}
+
+variable "sg_remote_state_region" {
+  type    = string
+  default = "us-east-1"
+}
