@@ -3,12 +3,6 @@ variable "instance_type" {
   default     = "t3.nano"
 }
 
-variable "aws_region" {
-  description = "AWS Region"
-  type        = string
-  default     = "us-east-1"
-}
-
 variable "instance_count" {
   description = "Number of instances"
   type        = number

@@ -1,3 +1,3 @@
 output "id" {
-  value = module.sg.id
+  value = module.sg.sg_id
 }
