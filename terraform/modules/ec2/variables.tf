@@ -16,7 +16,7 @@ variable "tags" {
 }
 
 variable "network_remote_state_bucket" {
-  type = string
+  type    = string
   default = "dpp-learning-terraform-state-bucket"
 }
 
