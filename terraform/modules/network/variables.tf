@@ -15,3 +15,13 @@ variable "tags" {
   type        = map(string)
   default     = {}
 }
+
+variable "env" {
+  type = string
+  default = "dev"
+}
+
+variable "vpc_azs" {
+  type = list(string)
+  default = ["us-east-1a", "us-east-1b", "us-east-1c"]
+}

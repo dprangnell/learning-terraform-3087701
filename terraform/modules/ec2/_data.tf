@@ -18,8 +18,18 @@ data "terraform_remote_state" "security_group" {
   backend = "s3"
 
   config = {
-    bucket = var.sg_remote_state_bucket
-    key    = var.sg_remote_state_key
-    region = var.sg_remote_state_region
+    bucket = var.network_remote_state_bucket
+    key    = var.network_remote_state_key
+    region = var.network_remote_state_region
+  }
+}
+
+data "terraform_remote_state" "vpc" {
+  backend = "s3"
+
+  config = {
+    bucket = var.network_remote_state_bucket
+    key    = var.network_remote_state_key
+    region = var.network_remote_state_region
   }
 }

@@ -5,5 +5,7 @@ resource "aws_instance" "web" {
 
   vpc_security_group_ids = [data.terraform_remote_state.security_group.outputs.id]
 
+  subnet_id = data.terraform_remote_state.vpc.outputs.public_subnets[0]
+
   tags   = local.combined_tags
 }
