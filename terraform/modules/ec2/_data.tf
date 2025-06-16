@@ -3,7 +3,8 @@ data "aws_ami" "app_ami" {
 
   filter {
     name   = "name"
-    values = ["bitnami-tomcat-*-x86_64-hvm-ebs-nami"]
+    values = [var.ami_deets.name]
+    #["bitnami-tomcat-*-x86_64-hvm-ebs-nami"]
   }
 
   filter {
@@ -11,16 +12,17 @@ data "aws_ami" "app_ami" {
     values = ["hvm"]
   }
 
-  owners = ["979382823631"] # Bitnami
+  #owners = ["979382823631"] # Bitnami
+  owners = [var.ami_deets.owner] # Bitnami
 }
 
 data "terraform_remote_state" "security_group" {
   backend = "s3"
 
   config = {
-    bucket = var.network_remote_state_bucket
-    key    = var.network_remote_state_key
-    region = var.network_remote_state_region
+    bucket = local.custom_network_remote_state.bucket
+    key    = local.custom_network_remote_state.key
+    region = local.custom_network_remote_state.region
   }
 }
 
@@ -28,8 +30,8 @@ data "terraform_remote_state" "vpc" {
   backend = "s3"
 
   config = {
-    bucket = var.network_remote_state_bucket
-    key    = var.network_remote_state_key
-    region = var.network_remote_state_region
+    bucket = local.custom_network_remote_state.bucket
+    key    = local.custom_network_remote_state.key
+    region = local.custom_network_remote_state.region
   }
 }

@@ -4,7 +4,7 @@ module "ec2" {
   network_remote_state_key = "network/terraform.tfstate"
 
   providers = {
-    aws = aws 
+    aws = aws
   }
 }
 

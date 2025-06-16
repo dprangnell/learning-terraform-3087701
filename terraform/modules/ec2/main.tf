@@ -3,8 +3,8 @@ module "autoscaling" {
   version = "8.3.0"
 
   name     = "example-asg"
-  min_size = 1
-  max_size = 2
+  min_size = var.min_size
+  max_size = var.max_size
 
   vpc_zone_identifier = data.terraform_remote_state.vpc.outputs.public_subnets
   security_groups     = [data.terraform_remote_state.security_group.outputs.id]
@@ -22,10 +22,10 @@ module "autoscaling" {
 
 
 module "alb" {
-  source = "terraform-aws-modules/alb/aws"
+  source  = "terraform-aws-modules/alb/aws"
   version = "~> 9.0"
 
-  name    = "my-alb"
+  name = "my-alb"
 
   vpc_id  = data.terraform_remote_state.vpc.outputs.vpc_id
   subnets = data.terraform_remote_state.vpc.outputs.public_subnets
@@ -47,10 +47,10 @@ module "alb" {
 
   target_groups = {
     ex_asg = {
-      name_prefix = "blog-"
-      protocol    = "HTTP"
-      port        = 80
-      target_type = "instance"
+      name_prefix                       = "blog-"
+      protocol                          = "HTTP"
+      port                              = 80
+      target_type                       = "instance"
       load_balancing_cross_zone_enabled = true
 
       # There's nothing to attach here in this definition.

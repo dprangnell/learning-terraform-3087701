@@ -15,16 +15,44 @@ variable "tags" {
   default     = {}
 }
 
-variable "network_remote_state_bucket" {
-  type    = string
-  default = "dpp-learning-terraform-state-bucket"
-}
-
 variable "network_remote_state_key" {
-  type = string
+  description = "Details on the remote state for the network tf"
+
+  type    = string
+  default = null
 }
 
-variable "network_remote_state_region" {
+variable "ami_deets" {
+  description = "details for the latest tomcat ami by bitnami"
+
+  type = object({
+    name  = string
+    owner = string
+  })
+
+  default = {
+    name  = "bitnami-tomcat-*-x86_64-hvm-ebs-nami"
+    owner = "979382823631" # Bitnami
+  }
+}
+
+variable "environment" {
+  type = object({
+    name           = string
+    network_prefix = string
+  })
+  default = {
+    name           = "example-sg"
+    network_prefix = "10.0"
+  }
+}
+
+variable "min_size" {
   type    = string
-  default = "us-east-1"
+  default = 1
+}
+
+variable "max_size" {
+  type    = string
+  default = 2
 }
